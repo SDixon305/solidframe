@@ -52,6 +52,27 @@ export default function BusinessSetup({ data, onUpdate, onConfigured, onPhoneNum
 
             console.log('Configured business:', data)
             console.log('Inferred region:', region)
+
+            // 3. Update VAPI assistant with new business name
+            try {
+                const vapiResponse = await fetch('https://hvac-demo-seth.loca.lt/api/update-vapi-greeting', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        business_name: data.name
+                    })
+                })
+
+                if (!vapiResponse.ok) {
+                    console.warn('Failed to update VAPI assistant, but continuing...')
+                }
+            } catch (vapiError) {
+                console.warn('Error updating VAPI assistant:', vapiError)
+                // Continue anyway - this is not critical
+            }
+
             setIsConfigured(true)
             onConfigured()
             onPhoneNumberSet('+1 (844) 671-3994') // Demo phone number

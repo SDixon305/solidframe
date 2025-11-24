@@ -2,6 +2,7 @@
 Area code to climate region mapping for HVAC emergency prioritization.
 Maps US area codes to hot (south) or cold (north) climate regions.
 """
+from typing import Optional
 
 # Southern/Hot climate states area codes
 SOUTHERN_AREA_CODES = {
@@ -90,7 +91,7 @@ NORTHERN_AREA_CODES = {
 }
 
 
-def extract_area_code(phone_number: str) -> int | None:
+def extract_area_code(phone_number: str) -> Optional[int]:
     """
     Extracts area code from a phone number string.
     Handles formats like: +12345678901, 1234567890, (123) 456-7890, 123-456-7890

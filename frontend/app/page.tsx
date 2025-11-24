@@ -46,10 +46,10 @@ export default function Home() {
                     <div className="relative p-6 md:p-8">
                         <div className="text-center mb-8">
                             <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                                See It In Action
+                                Try It Yourself
                             </h2>
                             <p className="text-base text-slate-400 max-w-2xl mx-auto">
-                                Configure a demo business and call the AI yourself.
+                                Set up a demo company and call the AI agent to test it live.
                             </p>
                         </div>
 

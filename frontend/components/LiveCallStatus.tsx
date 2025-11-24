@@ -52,11 +52,17 @@ export default function LiveCallStatus({ phoneNumber, status, transcript, onStar
                             </div>
                         </div>
 
-                        <div className="bg-slate-950/50 rounded-xl p-6 border border-emerald-500/30 mb-6 text-center">
+                        <div className="bg-slate-950/50 rounded-xl p-6 border border-emerald-500/30 mb-4 text-center">
                             <p className="text-xs text-slate-400 mb-2 uppercase tracking-wider font-medium">Call this number</p>
                             <p className="text-3xl font-mono font-bold text-white tracking-tight">
                                 {phoneNumber}
                             </p>
+                        </div>
+
+                        <div className="bg-slate-950/30 rounded-lg p-4 mb-4 border border-emerald-500/20">
+                            <p className="text-xs text-emerald-400/70 font-semibold mb-2">Test the agent with a common scenario:</p>
+                            <p className="text-sm text-white font-medium">"My air conditioner is completely broken"</p>
+                            <p className="text-xs text-slate-500 mt-2">Or try your own emergency HVAC scenario</p>
                         </div>
 
                         <div className="mt-auto">

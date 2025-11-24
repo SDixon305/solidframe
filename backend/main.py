@@ -798,6 +798,92 @@ async def vapi_tool_handler(request: Request):
         }
 
 
+# VAPI Greeting Update Endpoint
+@app.post("/api/update-vapi-greeting")
+async def update_vapi_greeting(request: Request):
+    """
+    Update VAPI assistant's greeting and system prompt with the new business name
+    Called from frontend when user configures their business
+    """
+    try:
+        from config import VAPI_API_KEY, VAPI_ASSISTANT_ID
+        import httpx
+
+        data = await request.json()
+        business_name = data.get('business_name', 'our company')
+
+        print(f"📝 Updating VAPI assistant greeting with business name: {business_name}")
+
+        async with httpx.AsyncClient() as client:
+            response = await client.patch(
+                f"https://api.vapi.ai/assistant/{VAPI_ASSISTANT_ID}",
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {VAPI_API_KEY}"
+                },
+                json={
+                    "firstMessage": f"Thank you for calling {business_name}, how may I help you?",
+                    "model": {
+                        "provider": "openai",
+                        "model": "gpt-4",
+                        "temperature": 0.7,
+                        "systemPrompt": f"""You are a professional receptionist for {business_name}, an HVAC company.
+
+EXACT SCRIPT TO FOLLOW:
+
+When customer says they're an existing customer:
+1. You: "What's your first and last name?"
+2. Customer gives name (e.g., "Seth Dixon")
+3. You call lookup_customer tool
+4. After 2 seconds, you MUST say: "Perfect! I have you here at [ADDRESS from tool response]. Now, what's going on with your system?"
+
+CRITICAL RULES:
+- DO NOT say "let me look that up" or "one moment" or "hold on"
+- DO NOT announce you're using any tools
+- DO NOT go silent after calling lookup_customer
+- DO NOT ask customer to confirm their address
+- After receiving lookup_customer response, count to 2 in your head, then IMMEDIATELY speak the address
+- You must TELL them their address, not ASK them
+
+EXAMPLE OF CORRECT FLOW:
+Customer: "I'm an existing customer"
+You: "Great! What's your first and last name?"
+Customer: "John Smith"
+You: [call lookup_customer] "Perfect! I have you here at 456 Ocean Drive in West Palm Beach. Now, what's going on with your AC?"
+
+EXAMPLE OF WRONG FLOW (DO NOT DO THIS):
+Customer: "I'm an existing customer"
+You: "What's your name?"
+Customer: "John Smith"
+You: "Let me look that up" [WRONG - never say this]
+You: "Using lookup tool" [WRONG - never say this]
+You: [silence] [WRONG - never go silent]
+You: "Can you confirm your address?" [WRONG - you tell them, don't ask]
+
+EMERGENCY DETECTION:
+If customer mentions: heat wave, elderly person, extreme heat, health risk, emergency, urgent - treat as emergency.
+
+For emergencies: After getting address, say "That sounds urgent. I'm dispatching a technician right now." Then call check_technician_availability and give them technician name, ETA, and confirmation number.
+
+For routine service: Call book_appointment and confirm the appointment details.
+
+TONE: Professional, confident, efficient. Act like you have all their information instantly available."""
+                    }
+                }
+            )
+
+            if response.status_code == 200:
+                print(f"✅ Successfully updated VAPI assistant with greeting: '{business_name}, how may I help you?'")
+                return {"success": True, "business_name": business_name}
+            else:
+                print(f"❌ Failed to update VAPI assistant: {response.status_code} - {response.text}")
+                return {"success": False, "error": response.text}
+
+    except Exception as e:
+        print(f"❌ Error updating VAPI greeting: {e}")
+        return {"success": False, "error": str(e)}
+
+
 # VAPI Assistant Update Endpoint
 @app.post("/api/update-vapi-assistant")
 async def update_vapi_assistant(request: Request):
