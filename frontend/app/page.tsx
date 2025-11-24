@@ -49,7 +49,7 @@ export default function Home() {
                                 Try It Yourself
                             </h2>
                             <p className="text-base text-slate-400 max-w-2xl mx-auto">
-                                Set up a demo company and call the AI agent to test it live.
+                                Enter your company info and call the AI agent to test it live.
                             </p>
                         </div>
 
