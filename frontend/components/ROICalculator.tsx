@@ -74,9 +74,9 @@ export default function ROICalculator() {
 
         if (isLowVolume) {
             // Low Volume (≤25 calls/week)
-            aiCost = 250
-            if (currentProvider === 'Answering Service') currentProviderCost = 140
-            if (currentProvider === 'Call Center') currentProviderCost = 350
+            aiCost = 299
+            if (currentProvider === 'Answering Service') currentProviderCost = 400
+            if (currentProvider === 'Call Center') currentProviderCost = 700
         } else {
             // High Volume (>25 calls/week)
             aiCost = 400
