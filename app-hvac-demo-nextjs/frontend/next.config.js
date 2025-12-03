@@ -5,7 +5,7 @@ const nextConfig = {
         return [
             {
                 source: '/hvac',
-                destination: '/hvac/index.html',
+                destination: '/hvac-static/index.html',
             },
         ]
     },
