@@ -11,7 +11,7 @@
     },
     {
       "source": "/hvac",
-      "destination": "/hvac-static/index.html"
+      "destination": "/hvac/index.html"
     }
   ]
 }
