@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/home/index.html" },
+    { "source": "/hvac", "destination": "/hvac/index.html" },
+    { "source": "/hvac/assets/:path*", "destination": "/hvac/assets/:path*" },
+    { "source": "/hvac/audio/:path*", "destination": "/hvac/audio/:path*" }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

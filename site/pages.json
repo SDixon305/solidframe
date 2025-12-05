@@ -1,0 +1,18 @@
+{
+  "pages": [
+    {
+      "route": "/",
+      "folder": "home",
+      "title": "SolidFrame.ai",
+      "description": "AI-powered business automation solutions"
+    },
+    {
+      "route": "/hvac",
+      "folder": "hvac",
+      "title": "HVAC AI Dispatcher",
+      "description": "24/7 AI dispatcher for HVAC businesses",
+      "hasApp": true,
+      "appRoutes": ["/hvac/dashboard"]
+    }
+  ]
+}
