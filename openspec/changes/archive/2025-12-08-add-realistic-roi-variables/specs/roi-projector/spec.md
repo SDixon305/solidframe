@@ -69,21 +69,21 @@ The ROI calculator SHALL capture separate average ticket values for emergency jo
 #### Scenario: User enters emergency ticket value
 - **WHEN** asked "What's your average emergency job worth?"
 - **THEN** a slider ranges from $200 to $1,500
-- **AND** default starts at ~$650
+- **AND** default starts at ~$550
 
 #### Scenario: User enters service ticket value
 - **WHEN** asked "What about a routine service call?"
 - **THEN** a slider ranges from $100 to $800
-- **AND** default starts at ~$350
+- **AND** default starts at ~$295
 
 ### Requirement: AI Performance Display
-The ROI calculator SHALL display AI booking rates as fixed claims (not adjustable) and infer SolidFrame pricing from call volume.
+The ROI calculator SHALL display AI booking rates as adjustable sliders with defaults and infer SolidFrame pricing from call volume.
 
-#### Scenario: AI booking rates shown as claims
+#### Scenario: AI booking rates shown with adjustable sliders
 - **WHEN** displaying the AI solution
-- **THEN** emergency booking rate shows as 95%
-- **AND** service booking rate shows as 85%
-- **AND** these are not adjustable (they are our performance claims)
+- **THEN** emergency booking rate defaults to 95% with a slider (range 50-100%)
+- **AND** service booking rate defaults to 85% with a slider (range 50-100%)
+- **AND** users can adjust these to test conservative scenarios
 
 #### Scenario: SolidFrame pricing inferred from volume
 - **WHEN** total weekly calls are entered
@@ -115,8 +115,8 @@ The ROI calculator SHALL compute revenue impact separately for emergency and ser
 
 #### Scenario: AI recovery calculated
 - **WHEN** calculating AI performance
-- **THEN** emergency recovery uses 95% booking rate
-- **AND** service recovery uses 85% booking rate
+- **THEN** emergency recovery uses the user-adjustable AI emergency booking rate (default 95%)
+- **AND** service recovery uses the user-adjustable AI service booking rate (default 85%)
 - **AND** the delta between current and AI is the "recovered" amount
 
 #### Scenario: Net ROI includes cost comparison

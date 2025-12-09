@@ -58,5 +58,16 @@
 ## 6. Testing and Polish
 - [x] 6.1 Test calculation accuracy with edge cases
 - [x] 6.2 Verify localStorage persistence with new fields
-- [ ] 6.3 Test mobile responsiveness of questionnaire flow
-- [ ] 6.4 Ensure PDF generates correctly with all new data
+- [x] 6.3 Test mobile responsiveness of questionnaire flow
+- [x] 6.4 Ensure PDF generates correctly with all new data
+
+## 7. UI Refinements (2025-12-07)
+- [x] 7.1 Update default ticket values: emergency $550, service $295
+- [x] 7.2 Make AI booking rates adjustable via sliders (50-100% range)
+- [x] 7.3 Add `aiEmergencyBookingRate` and `aiServiceBookingRate` to ROIInputs interface
+- [x] 7.4 Restructure visualization to 2x2 grid layout:
+  - Row 1: Current Solution selector (left) | SolidFrame AI with sliders (right)
+  - Row 2: "You're Losing" result (left) | "AI Captures More" result (right)
+- [x] 7.5 Move solution selector buttons into ROIVisualization component
+- [x] 7.6 Update localStorage key to v4 to force fresh defaults with new fields
+- [x] 7.7 Merge localStorage with defaults to handle missing fields gracefully

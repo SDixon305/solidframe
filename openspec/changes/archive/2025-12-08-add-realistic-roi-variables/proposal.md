@@ -22,8 +22,8 @@ When the owner validates each assumption themselves, they can't dispute the fina
 - % of calls currently missed (go to voicemail/unanswered)
 
 **Ticket Economics (Split by Type)**
-- Average emergency ticket value (default ~$650)
-- Average routine service ticket value (default ~$350)
+- Average emergency ticket value (default ~$550)
+- Average routine service ticket value (default ~$295)
 
 **Current Solution Performance**
 - Current solution type (Voicemail, Answering Service, In-house Staff)
@@ -35,7 +35,7 @@ When the owner validates each assumption themselves, they can't dispute the fina
 - Current monthly cost of solution (for net ROI comparison)
 
 **AI Solution Performance**
-- AI booking rates displayed (95% emergency, 85% service) - not adjustable, this is our claim
+- AI booking rates displayed with adjustable sliders (default 95% emergency, 85% service) - allows prospects to test conservative scenarios
 - SolidFrame cost inferred from call volume (binary: $299 or $499 based on 25 call threshold)
 
 ### New Calculations
