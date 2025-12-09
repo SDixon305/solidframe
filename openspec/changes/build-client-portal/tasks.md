@@ -125,14 +125,14 @@ Create functions to generate time-based fake metrics:
 - Responsive grid (1 col mobile, 2 col tablet, 4 col desktop)
 
 ## Checklist (complete ALL items)
-- [ ] 3A.1 Create client layout with tenant validation
-- [ ] 3A.2 Create ClientSidebar component
-- [ ] 3A.3 Create ClientHeader component
-- [ ] 3A.4 Create tenant context provider
-- [ ] 3A.5 Create ToolCard component
-- [ ] 3A.6 Create dashboard with tool grid
-- [ ] 3A.7 Create fake data utilities
-- [ ] 3A.8 Add mobile responsive behavior
+- [x] 3A.1 Create client layout with tenant validation
+- [x] 3A.2 Create ClientSidebar component
+- [x] 3A.3 Create ClientHeader component
+- [x] 3A.4 Create tenant context provider
+- [x] 3A.5 Create ToolCard component
+- [x] 3A.6 Create dashboard with tool grid
+- [x] 3A.7 Create fake data utilities
+- [x] 3A.8 Add mobile responsive behavior
 
 ## Do Not
 - Build the actual tool pages (that's 3C and 3D)
@@ -271,15 +271,15 @@ Build the complete 10-step onboarding wizard.
 - Can navigate directly to any completed step
 
 ## Checklist (complete ALL items)
-- [ ] 3B.1 Create wizard container and routing
-- [ ] 3B.2 Create WizardProgress component
-- [ ] 3B.3 Create WizardNav component
-- [ ] 3B.4 Create Steps 1-3 (Welcome, Business Type, Service Area)
-- [ ] 3B.5 Create Steps 4-6 (Hours, Emergency, Team)
-- [ ] 3B.6 Create Steps 7-8 (AI Personality, Pricing)
-- [ ] 3B.7 Create Steps 9-10 (Phone Number, Test Call)
-- [ ] 3B.8 Implement state persistence
-- [ ] 3B.9 Handle wizard completion
+- [x] 3B.1 Create wizard container and routing
+- [x] 3B.2 Create WizardProgress component
+- [x] 3B.3 Create WizardNav component
+- [x] 3B.4 Create Steps 1-3 (Welcome, Business Type, Service Area)
+- [x] 3B.5 Create Steps 4-6 (Hours, Emergency, Team)
+- [x] 3B.6 Create Steps 7-8 (AI Personality, Pricing)
+- [x] 3B.7 Create Steps 9-10 (Phone Number, Test Call)
+- [x] 3B.8 Implement state persistence
+- [x] 3B.9 Handle wizard completion
 
 ## Do Not
 - Block dashboard access if onboarding incomplete
@@ -424,12 +424,12 @@ Fake data:
 - Mobile responsive
 
 ## Checklist (complete ALL items)
-- [ ] 3C.1 Create shared ToolLayout and components
-- [ ] 3C.2 Build After Hours AI Agent (real Vapi integration)
-- [ ] 3C.3 Build Missed Call Text-Back (mockup)
-- [ ] 3C.4 Build Review Request Bot (mockup)
-- [ ] 3C.5 Build Appointment Reminders (mockup)
-- [ ] 3C.6 Generate fake data for mockup tools
+- [x] 3C.1 Create shared ToolLayout and components
+- [x] 3C.2 Build After Hours AI Agent (real Vapi integration)
+- [x] 3C.3 Build Missed Call Text-Back (mockup)
+- [x] 3C.4 Build Review Request Bot (mockup)
+- [x] 3C.5 Build Appointment Reminders (mockup)
+- [x] 3C.6 Generate fake data for mockup tools
 
 ## Do Not
 - Make mockup tools actually functional
@@ -583,12 +583,12 @@ Fake data:
 - Settings persist when saved
 
 ## Checklist (complete ALL items)
-- [ ] 3D.1 Build Quote Reviver (mockup)
-- [ ] 3D.2 Build Seasonal Campaigns (mockup)
-- [ ] 3D.3 Build Maintenance Renewal (mockup)
-- [ ] 3D.4 Build Tech Training (mockup)
-- [ ] 3D.5 Create unique components for each tool
-- [ ] 3D.6 Generate fake data for all tools
+- [x] 3D.1 Build Quote Reviver (mockup)
+- [x] 3D.2 Build Seasonal Campaigns (mockup)
+- [x] 3D.3 Build Maintenance Renewal (mockup)
+- [x] 3D.4 Build Tech Training (mockup)
+- [x] 3D.5 Create unique components for each tool
+- [x] 3D.6 Generate fake data for all tools
 
 ## Do Not
 - Make tools actually functional
@@ -682,12 +682,12 @@ GET /api/tenant/feedback
 - Optimistic UI for submission
 
 ## Checklist (complete ALL items)
-- [ ] 3E.1 Create feedback page
-- [ ] 3E.2 Create FeedbackForm component
-- [ ] 3E.3 Create IssueReporter with context capture
-- [ ] 3E.4 Create FeedbackHistory component
-- [ ] 3E.5 Create feedback API routes
-- [ ] 3E.6 Wire up admin alert creation
+- [x] 3E.1 Create feedback page
+- [x] 3E.2 Create FeedbackForm component
+- [x] 3E.3 Create IssueReporter with context capture
+- [x] 3E.4 Create FeedbackHistory component
+- [x] 3E.5 Create feedback API routes
+- [x] 3E.6 Wire up admin alert creation
 
 ## Do Not
 - Build admin feedback management (that's in admin portal)
@@ -819,14 +819,14 @@ Generate 100 fake customers:
 - All 8 tools activated for Acme
 
 ## Checklist (complete ALL items)
-- [ ] 3F.1 Create Acme tenant record
-- [ ] 3F.2 Create Acme user account
-- [ ] 3F.3 Seed technician team
-- [ ] 3F.4 Generate 50 call records
-- [ ] 3F.5 Generate 100 customer records
-- [ ] 3F.6 Populate all tool metrics
-- [ ] 3F.7 Mark onboarding complete
-- [ ] 3F.8 Activate all 8 tools
+- [x] 3F.1 Create Acme tenant record
+- [x] 3F.2 Create Acme user account
+- [x] 3F.3 Seed technician team
+- [x] 3F.4 Generate 50 call records
+- [x] 3F.5 Generate 100 customer records
+- [x] 3F.6 Populate all tool metrics
+- [x] 3F.7 Mark onboarding complete
+- [x] 3F.8 Activate all 8 tools
 
 ## Do Not
 - Use obviously fake data ("Test User 1")
@@ -849,11 +849,11 @@ Report back with:
 
 After all sub-agents complete:
 
-- [ ] Client portal fully functional
-- [ ] Onboarding wizard works end-to-end
-- [ ] All 8 tools render with appropriate content
-- [ ] After Hours Agent has real Vapi integration
-- [ ] Mockup tools have convincing fake data
-- [ ] Feedback system captures and alerts
-- [ ] Acme HVAC is fully populated demo client
-- [ ] Can login as Acme and explore entire platform
+- [x] Client portal fully functional
+- [x] Onboarding wizard works end-to-end
+- [x] All 8 tools render with appropriate content
+- [x] After Hours Agent has real Vapi integration
+- [x] Mockup tools have convincing fake data
+- [x] Feedback system captures and alerts
+- [x] Acme HVAC is fully populated demo client
+- [x] Can login as Acme and explore entire platform

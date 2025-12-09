@@ -56,16 +56,16 @@ Before writing any code, read these files to understand the project:
 Create SQL migration files for the new multi-tenant schema.
 
 ## Checklist (complete ALL items)
-- [ ] 1.1 Create tenants migration
-- [ ] 1.2 Create users migration
-- [ ] 1.3 Create tools and tool_versions migrations
-- [ ] 1.4 Create tenant_tools and tenant_tool_configs migrations
-- [ ] 1.5 Create subscriptions migration
-- [ ] 1.6 Create usage_logs migration
-- [ ] 1.7 Create alerts migration
-- [ ] 1.8 Create feedback migration
-- [ ] 1.9 Create onboarding_progress migration
-- [ ] 1.10 Seed 8 tool definitions
+- [x] 1.1 Create tenants migration
+- [x] 1.2 Create users migration
+- [x] 1.3 Create tools and tool_versions migrations
+- [x] 1.4 Create tenant_tools and tenant_tool_configs migrations
+- [x] 1.5 Create subscriptions migration
+- [x] 1.6 Create usage_logs migration
+- [x] 1.7 Create alerts migration
+- [x] 1.8 Create feedback migration
+- [x] 1.9 Create onboarding_progress migration
+- [x] 1.10 Seed 8 tool definitions
 
 ## Files to Create
 1. `supabase/migrations/02_tenants.sql` - tenants table
@@ -98,11 +98,11 @@ Create SQL migration files for the new multi-tenant schema.
 - Include comments explaining each table's purpose
 
 ## Acceptance Criteria
-- [ ] All 10 migration files created
-- [ ] Each file is valid SQL that can run independently
-- [ ] RLS enabled on all tables
-- [ ] 8 tools seeded with correct slugs and metadata
-- [ ] Foreign keys properly defined
+- [x] All 10 migration files created
+- [x] Each file is valid SQL that can run independently
+- [x] RLS enabled on all tables
+- [x] 8 tools seeded with correct slugs and metadata
+- [x] Foreign keys properly defined
 
 ## Do Not
 - Modify existing demo_* tables
@@ -147,14 +147,14 @@ Also study these EXISTING files before coding:
 Implement the authentication system with role-based access.
 
 ## Checklist (complete ALL items)
-- [ ] 2.1 Create Supabase server/client utilities
-- [ ] 2.2 Implement login API route (magic link)
-- [ ] 2.3 Implement callback API route
-- [ ] 2.4 Implement logout API route
-- [ ] 2.5 Create auth middleware
-- [ ] 2.6 Enhance login page UI (extend existing, don't replace)
-- [ ] 2.7 Create auth context provider
-- [ ] 2.8 Add TypeScript types
+- [x] 2.1 Create Supabase server/client utilities
+- [x] 2.2 Implement login API route (magic link)
+- [x] 2.3 Implement callback API route
+- [x] 2.4 Implement logout API route
+- [x] 2.5 Create auth middleware
+- [x] 2.6 Enhance login page UI (extend existing, don't replace)
+- [x] 2.7 Create auth context provider
+- [x] 2.8 Add TypeScript types
 
 ## Files to Create/Modify
 1. `src/lib/supabase-server.ts` - Server-side Supabase client with auth
@@ -187,12 +187,12 @@ Implement the authentication system with role-based access.
 - Auth context provides: user, tenant, isLoading, login, logout
 
 ## Acceptance Criteria
-- [ ] Can send magic link to email
-- [ ] Magic link click logs user in
-- [ ] User record created on first login
-- [ ] Middleware blocks unauthorized access to /admin/*
-- [ ] Auth context available throughout app
-- [ ] Logout clears session
+- [x] Can send magic link to email
+- [x] Magic link click logs user in
+- [x] User record created on first login
+- [x] Middleware blocks unauthorized access to /admin/*
+- [x] Auth context available throughout app
+- [x] Logout clears session
 
 ## Do Not
 - Implement password auth
@@ -233,16 +233,16 @@ Before writing any code, read these files:
 Replace placeholder policies with proper tenant-isolation policies.
 
 ## Checklist (complete ALL items)
-- [ ] 3.1 Create helper functions (get_user_tenant_id, is_super_admin)
-- [ ] 3.2 Create tenants table policies
-- [ ] 3.3 Create users table policies
-- [ ] 3.4 Create tools/tool_versions table policies
-- [ ] 3.5 Create tenant_tools/tenant_tool_configs policies
-- [ ] 3.6 Create subscriptions policies
-- [ ] 3.7 Create usage_logs policies
-- [ ] 3.8 Create alerts policies
-- [ ] 3.9 Create feedback policies
-- [ ] 3.10 Create onboarding_progress policies
+- [x] 3.1 Create helper functions (get_user_tenant_id, is_super_admin)
+- [x] 3.2 Create tenants table policies
+- [x] 3.3 Create users table policies
+- [x] 3.4 Create tools/tool_versions table policies
+- [x] 3.5 Create tenant_tools/tenant_tool_configs policies
+- [x] 3.6 Create subscriptions policies
+- [x] 3.7 Create usage_logs policies
+- [x] 3.8 Create alerts policies
+- [x] 3.9 Create feedback policies
+- [x] 3.10 Create onboarding_progress policies
 
 ## Files to Create
 1. `supabase/migrations/20_rls_policies.sql` - All RLS policies in one file
@@ -311,11 +311,11 @@ $$ LANGUAGE sql SECURITY DEFINER;
 ```
 
 ## Acceptance Criteria
-- [ ] All placeholder policies replaced
-- [ ] Helper functions created
-- [ ] super_admin can access all data
-- [ ] client_user can only access their tenant's data
-- [ ] Policies are performant (use indexes)
+- [x] All placeholder policies replaced
+- [x] Helper functions created
+- [x] super_admin can access all data
+- [x] client_user can only access their tenant's data
+- [x] Policies are performant (use indexes)
 
 ## Do Not
 - Modify table structures
@@ -358,14 +358,14 @@ Also study existing patterns:
 Create the tool versioning system and Stripe webhook skeleton.
 
 ## Checklist (complete ALL items)
-- [ ] 4.1 Create tool TypeScript types
-- [ ] 4.2 Implement tool-engine.ts with versioning logic
-- [ ] 4.3 Create tools CRUD API route
-- [ ] 4.4 Create versions CRUD API route
-- [ ] 4.5 Create deploy/rollback API routes
-- [ ] 4.6 Initialize Stripe client
-- [ ] 4.7 Create Stripe webhook handler
-- [ ] 4.8 Create subscription management route
+- [x] 4.1 Create tool TypeScript types
+- [x] 4.2 Implement tool-engine.ts with versioning logic
+- [x] 4.3 Create tools CRUD API route
+- [x] 4.4 Create versions CRUD API route
+- [x] 4.5 Create deploy/rollback API routes
+- [x] 4.6 Initialize Stripe client
+- [x] 4.7 Create Stripe webhook handler
+- [x] 4.8 Create subscription management route
 
 ## Files to Create
 
@@ -406,11 +406,11 @@ Create the tool versioning system and Stripe webhook skeleton.
 - Include proper error handling
 
 ## Acceptance Criteria
-- [ ] Can create/update tool versions via API
-- [ ] Can deploy version to staging/production
-- [ ] Can rollback to previous version
-- [ ] Stripe webhook receives and logs events
-- [ ] Subscription status syncs to database
+- [x] Can create/update tool versions via API
+- [x] Can deploy version to staging/production
+- [x] Can rollback to previous version
+- [x] Stripe webhook receives and logs events
+- [x] Subscription status syncs to database
 
 ## Do Not
 - Create UI (that's Master Proposal 2)
@@ -430,9 +430,9 @@ Report back with:
 
 After all sub-agents complete:
 
-- [ ] Run all migrations against Supabase
-- [ ] Verify auth flow works end-to-end
-- [ ] Verify RLS policies block unauthorized access
-- [ ] Verify tool versioning API works
-- [ ] Verify Stripe webhook receives test events
-- [ ] Update `openspec/specs/` with new capability specs
+- [x] Run all migrations against Supabase
+- [x] Verify auth flow works end-to-end
+- [x] Verify RLS policies block unauthorized access
+- [x] Verify tool versioning API works
+- [x] Verify Stripe webhook receives test events
+- [x] Update `openspec/specs/` with new capability specs

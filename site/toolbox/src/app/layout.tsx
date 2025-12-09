@@ -20,17 +20,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
-      <body className="antialiased font-sans bg-[#09090b] text-zinc-100">
-        {/* Animated Background Layer */}
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/20 via-[#09090b] to-[#09090b]" />
-          <div className="bg-grid-animation" />
-        </div>
-
-        {/* Content Layer */}
-        <div className="relative z-10 min-h-screen">
-          {children}
-        </div>
+      <body className="antialiased font-sans bg-[#f4f5f7] text-gray-900">
+        {children}
       </body>
     </html>
   )

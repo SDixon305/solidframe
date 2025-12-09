@@ -1,15 +1,26 @@
 import { ReactNode } from 'react'
-import { AdminHeader } from '@/components/admin/AdminHeader'
+import { redirect } from 'next/navigation'
+import { getAuthUser } from '@/lib/supabase-server'
+import { AdminLayoutClient } from '@/components/admin/AdminLayoutClient'
 
-export default function AdminLayout({ children }: { children: ReactNode }) {
+export default async function AdminLayout({ children }: { children: ReactNode }) {
+    const user = await getAuthUser()
+
+    // Auth check - middleware handles redirect, but double-check here
+    if (!user || user.role !== 'super_admin') {
+        redirect('/login?error=Access denied. Super admin role required.')
+    }
+
+    const userName = user.firstName && user.lastName
+        ? `${user.firstName} ${user.lastName}`
+        : user.email.split('@')[0]
+
     return (
-        <div className="flex h-screen flex-col overflow-hidden bg-black text-white selection:bg-blue-500/30">
-            <AdminHeader />
-            <main className="flex-1 overflow-y-auto bg-[url('/grid.svg')] bg-fixed">
-                <div className="container mx-auto py-8">
-                    {children}
-                </div>
-            </main>
-        </div>
+        <AdminLayoutClient
+            userName={userName}
+            userEmail={user.email}
+        >
+            {children}
+        </AdminLayoutClient>
     )
 }

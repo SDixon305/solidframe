@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SolidFrame Toolbox
+
+Multi-tenant SaaS platform for home service businesses. Provides 8 automation tools including AI voice agents, missed call text-back, review requests, and more.
+
+## Documentation
+
+- [Quick Start Guide](docs/QUICK_START.md) - Setup and run locally
+- [Demo Credentials](docs/DEMO_CREDENTIALS.md) - Login info for testing
+- [Architecture Overview](docs/ARCHITECTURE.md) - How it all works
 
 ## Getting Started
 

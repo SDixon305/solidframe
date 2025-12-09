@@ -52,6 +52,10 @@ export interface ROIInputs {
     currentEmergencyBookingRate: number // 0-100%
     currentServiceBookingRate: number // 0-100%
 
+    // AI solution booking rates (adjustable)
+    aiEmergencyBookingRate: number // 0-100%, default 95%
+    aiServiceBookingRate: number // 0-100%, default 85%
+
     // Ticket values
     emergencyTicketValue: number
     serviceTicketValue: number
@@ -89,8 +93,10 @@ const DEFAULT_INPUTS: ROIInputs = {
     currentMonthlyCost: SOLUTION_DEFAULTS.voicemail.monthlyCost,
     currentEmergencyBookingRate: SOLUTION_DEFAULTS.voicemail.emergencyBookingRate,
     currentServiceBookingRate: SOLUTION_DEFAULTS.voicemail.serviceBookingRate,
-    emergencyTicketValue: 650,
-    serviceTicketValue: 350
+    aiEmergencyBookingRate: AI_BOOKING_RATES.emergency,
+    aiServiceBookingRate: AI_BOOKING_RATES.service,
+    emergencyTicketValue: 550,
+    serviceTicketValue: 295
 }
 
 function calculateSolidFrameMonthlyPrice(missedCallsPerWeek: number): number {
@@ -103,14 +109,12 @@ export function useROICalculator() {
     // Initialize state from localStorage if available, else defaults
     const [inputs, setInputs] = useState<ROIInputs>(() => {
         if (typeof window !== 'undefined') {
-            const saved = localStorage.getItem('solidframe_roi_inputs_v2')
+            const saved = localStorage.getItem('solidframe_roi_inputs_v4')
             if (saved) {
                 try {
                     const parsed = JSON.parse(saved)
-                    // Validate it has the new structure
-                    if ('totalCallsPerWeek' in parsed) {
-                        return parsed
-                    }
+                    // Merge with defaults to ensure all fields exist
+                    return { ...DEFAULT_INPUTS, ...parsed }
                 } catch (e) {
                     // Fall through to defaults
                 }
@@ -155,6 +159,8 @@ export function useROICalculator() {
             currentMonthlyCost,
             currentEmergencyBookingRate,
             currentServiceBookingRate,
+            aiEmergencyBookingRate,
+            aiServiceBookingRate,
             emergencyTicketValue,
             serviceTicketValue
         } = inputs
@@ -176,8 +182,8 @@ export function useROICalculator() {
         const serviceLostWeekly = servicePotentialWeekly - serviceCurrentWeekly
 
         // AI booking (what SolidFrame would recover)
-        const emergencyAIWeekly = emergencyPotentialWeekly * (AI_BOOKING_RATES.emergency / 100)
-        const serviceAIWeekly = servicePotentialWeekly * (AI_BOOKING_RATES.service / 100)
+        const emergencyAIWeekly = emergencyPotentialWeekly * (aiEmergencyBookingRate / 100)
+        const serviceAIWeekly = servicePotentialWeekly * (aiServiceBookingRate / 100)
 
         // Recovered = AI booking minus current booking (the delta)
         const emergencyRecoveredWeekly = emergencyAIWeekly - emergencyCurrentWeekly
@@ -221,7 +227,7 @@ export function useROICalculator() {
 
         // Persist to local storage
         if (typeof window !== 'undefined') {
-            localStorage.setItem('solidframe_roi_inputs_v2', JSON.stringify(inputs))
+            localStorage.setItem('solidframe_roi_inputs_v4', JSON.stringify(inputs))
         }
 
     }, [inputs])

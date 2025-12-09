@@ -9,7 +9,6 @@ import Link from 'next/link'
 import { useROICalculator } from '@/lib/hooks/use-roi-calculator'
 import ROIQuestionnaire from '@/components/tools/roi/ROIQuestionnaire'
 import ROIVisualization from '@/components/tools/roi/ROIVisualization'
-import ROIInputsCompact from '@/components/tools/roi/ROIInputsCompact'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ROIProjectorPage() {
@@ -19,7 +18,7 @@ export default function ROIProjectorPage() {
 
     const handleReset = () => {
         if (typeof window !== 'undefined') {
-            localStorage.removeItem('solidframe_roi_inputs_v2')
+            localStorage.removeItem('solidframe_roi_inputs_v4')
             window.location.reload()
         }
     }
@@ -40,55 +39,58 @@ export default function ROIProjectorPage() {
     }
 
     return (
-        <div className="flex h-screen font-sans text-white transition-colors duration-500">
-            <ToolboxSidebar
-                userEmail={userEmail}
-                activeFolder="sales_demos"
-            />
+        <div className="flex h-screen bg-slate-100 text-slate-900">
+            {/* Sidebar - hidden on mobile */}
+            <div className="hidden md:block">
+                <ToolboxSidebar
+                    userEmail={userEmail}
+                    activeFolder="sales_demos"
+                />
+            </div>
 
-            <main className="flex-1 relative overflow-hidden flex flex-col z-10 bg-[#09090b]">
+            <main className="flex-1 relative overflow-hidden flex flex-col min-w-0">
                 {/* Header */}
-                <header className="h-20 border-b border-white/5 flex items-center justify-between px-8 bg-black/20 backdrop-blur-sm z-20">
-                    <div className="flex items-center gap-6">
-                        <Link href="/" className="p-2 hover:bg-white/10 rounded-lg transition-colors text-zinc-400 hover:text-white">
-                            <ArrowLeft size={24} />
+                <header className="h-16 border-b border-slate-200 flex items-center justify-between px-4 md:px-6 bg-white shrink-0">
+                    <div className="flex items-center gap-3 md:gap-4 min-w-0">
+                        <Link href="/" className="p-2 hover:bg-slate-100 rounded-lg transition-colors text-slate-400 hover:text-slate-900 shrink-0">
+                            <ArrowLeft size={20} />
                         </Link>
-                        <div className={`p-3 rounded-xl border bg-amber-500/10 border-amber-500/30 shadow-[0_0_20px_rgba(251,191,36,0.2)]`}>
-                            <DollarSign size={24} className="text-amber-400" />
+                        <div className="p-2.5 rounded-xl bg-slate-900 shadow-sm shrink-0">
+                            <DollarSign size={20} className="text-amber-400" />
                         </div>
-                        <div>
-                            <h2 className="text-xl font-bold tracking-tight text-white">
+                        <div className="min-w-0">
+                            <h2 className="text-lg md:text-xl font-semibold text-slate-900 truncate">
                                 ROI Projector
                             </h2>
-                            <p className="text-sm text-zinc-500">
+                            <p className="text-xs md:text-sm text-slate-500 hidden sm:block">
                                 Show them the cost of inaction
                             </p>
                         </div>
                     </div>
 
-                    <div className="flex gap-4">
+                    <div className="flex gap-2 md:gap-3 shrink-0">
                         <button
                             onClick={handleReset}
-                            className="text-zinc-400 hover:text-white px-4 py-2 rounded-lg hover:bg-white/5 transition-all flex items-center gap-2 text-sm"
+                            className="text-slate-500 hover:text-slate-900 p-2 md:px-4 md:py-2 rounded-lg hover:bg-slate-100 transition-all flex items-center gap-2 text-sm font-medium"
                         >
                             <RotateCcw size={16} />
-                            Reset
+                            <span className="hidden sm:inline">Reset</span>
                         </button>
                         {showResults && (
                             <button
                                 onClick={handleExport}
-                                className="bg-white text-black px-5 py-2 rounded-lg font-bold uppercase tracking-wider text-xs hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all flex items-center gap-2"
+                                className="bg-slate-900 text-white p-2 md:px-4 md:py-2.5 rounded-lg font-medium text-sm hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm"
                             >
                                 <Download size={16} />
-                                Export PDF
+                                <span className="hidden sm:inline">Export PDF</span>
                             </button>
                         )}
                     </div>
                 </header>
 
                 {/* Content Area */}
-                <div className="flex-1 overflow-y-auto p-4 md:p-8 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-                    <div className="max-w-7xl mx-auto">
+                <div className="flex-1 p-4 md:p-6 flex flex-col overflow-y-auto">
+                    <div className="max-w-7xl mx-auto w-full h-full flex-1 flex flex-col">
                         <AnimatePresence mode="wait">
                             {!showResults ? (
                                 <motion.div
@@ -96,16 +98,8 @@ export default function ROIProjectorPage() {
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
-                                    className="max-w-2xl mx-auto"
+                                    className="w-full max-w-2xl mx-auto h-full"
                                 >
-                                    <div className="text-center mb-8">
-                                        <h1 className="text-2xl font-bold text-white mb-2">
-                                            Let&apos;s calculate your ROI
-                                        </h1>
-                                        <p className="text-zinc-500">
-                                            Answer a few questions about your business
-                                        </p>
-                                    </div>
                                     <ROIQuestionnaire
                                         inputs={inputs}
                                         setInputs={setInputs}
@@ -119,30 +113,15 @@ export default function ROIProjectorPage() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
-                                    className="max-w-3xl mx-auto space-y-6"
+                                    className="max-w-5xl mx-auto w-full py-2"
                                 >
-                                    {/* Results on top */}
-                                    <ROIVisualization results={results} />
-
-                                    {/* Inputs below - calculator style */}
-                                    <div className="p-4 rounded-xl bg-zinc-900/50 border border-white/5">
-                                        <div className="flex items-center justify-between mb-3">
-                                            <h3 className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                                                Adjust Inputs
-                                            </h3>
-                                            <button
-                                                onClick={() => setShowResults(false)}
-                                                className="text-[10px] text-zinc-500 hover:text-zinc-300 transition-colors cursor-pointer"
-                                            >
-                                                Back to questions
-                                            </button>
-                                        </div>
-                                        <ROIInputsCompact
-                                            inputs={inputs}
-                                            setInputs={setInputs}
-                                            applySolutionDefaults={applySolutionDefaults}
-                                        />
-                                    </div>
+                                    <ROIVisualization
+                                        results={results}
+                                        inputs={inputs}
+                                        setInputs={setInputs}
+                                        applySolutionDefaults={applySolutionDefaults}
+                                        onBackToQuestions={() => setShowResults(false)}
+                                    />
                                 </motion.div>
                             )}
                         </AnimatePresence>

@@ -97,12 +97,12 @@ Create the admin layout shell with navigation, not the page content.
 - Server component for layout, client components for interactive parts
 
 ## Checklist (complete ALL items)
-- [ ] 2A.1 Create admin layout with auth check
-- [ ] 2A.2 Create AdminSidebar component
-- [ ] 2A.3 Create AdminHeader component
-- [ ] 2A.4 Create MetricCard component
-- [ ] 2A.5 Create dashboard home page with placeholders
-- [ ] 2A.6 Add mobile responsive behavior
+- [x] 2A.1 Create admin layout with auth check
+- [x] 2A.2 Create AdminSidebar component
+- [x] 2A.3 Create AdminHeader component
+- [x] 2A.4 Create MetricCard component
+- [x] 2A.5 Create dashboard home page with placeholders
+- [x] 2A.6 Add mobile responsive behavior
 
 ## Acceptance Criteria
 - Admin layout renders with sidebar and header
@@ -204,14 +204,14 @@ Build the complete client management UI with CRUD operations.
 - Loading skeletons while data fetches
 
 ## Checklist (complete ALL items)
-- [ ] 2B.1 Create client list page with search/filter
-- [ ] 2B.2 Create client form component
-- [ ] 2B.3 Create new client page
-- [ ] 2B.4 Create client detail overview tab
-- [ ] 2B.5 Create tool activation tab with toggle grid
-- [ ] 2B.6 Create usage tab (placeholder charts)
-- [ ] 2B.7 Create config tab with JSON viewer
-- [ ] 2B.8 Create view-as tab
+- [x] 2B.1 Create client list page with search/filter
+- [x] 2B.2 Create client form component
+- [x] 2B.3 Create new client page
+- [x] 2B.4 Create client detail overview tab
+- [x] 2B.5 Create tool activation tab with toggle grid
+- [x] 2B.6 Create usage tab (placeholder charts)
+- [x] 2B.7 Create config tab with JSON viewer
+- [x] 2B.8 Create view-as tab
 
 ## Acceptance Criteria
 - Can list all clients with search/filter
@@ -323,14 +323,14 @@ Build the tool management and version deployment UI.
 - Show which tenants are affected by deploy
 
 ## Checklist (complete ALL items)
-- [ ] 2C.1 Create tool list page
-- [ ] 2C.2 Create tool detail page
-- [ ] 2C.3 Create version list with status badges
-- [ ] 2C.4 Create version editor component
-- [ ] 2C.5 Create deploy controls with rollout slider
-- [ ] 2C.6 Implement deploy to staging flow
-- [ ] 2C.7 Implement deploy to production flow
-- [ ] 2C.8 Implement rollback flow
+- [x] 2C.1 Create tool list page
+- [x] 2C.2 Create tool detail page
+- [x] 2C.3 Create version list with status badges
+- [x] 2C.4 Create version editor component
+- [x] 2C.5 Create deploy controls with rollout slider
+- [x] 2C.6 Implement deploy to staging flow
+- [x] 2C.7 Implement deploy to production flow
+- [x] 2C.8 Implement rollback flow
 
 ## Acceptance Criteria
 - Can view all 8 tools in grid
@@ -426,13 +426,13 @@ Build the platform-wide analytics dashboard.
 - Date range selector (7d, 30d, 90d)
 
 ## Checklist (complete ALL items)
-- [ ] 2D.1 Create analytics page layout
-- [ ] 2D.2 Create UsageChart component
-- [ ] 2D.3 Create ClientBreakdown table
-- [ ] 2D.4 Create ToolUsageChart
-- [ ] 2D.5 Create RevenueCard (placeholder if no Stripe)
-- [ ] 2D.6 Add date range filter
-- [ ] 2D.7 Create analytics API routes
+- [x] 2D.1 Create analytics page layout
+- [x] 2D.2 Create UsageChart component
+- [x] 2D.3 Create ClientBreakdown table
+- [x] 2D.4 Create ToolUsageChart
+- [x] 2D.5 Create RevenueCard (placeholder if no Stripe)
+- [x] 2D.6 Add date range filter
+- [x] 2D.7 Create analytics API routes
 
 ## Acceptance Criteria
 - Dashboard loads with overview metrics
@@ -552,14 +552,14 @@ export async function createAlert(
 - Severity-based styling
 
 ## Checklist (complete ALL items)
-- [ ] 2E.1 Create alerts API routes
-- [ ] 2E.2 Create AlertList component
-- [ ] 2E.3 Create AlertItem with severity styling
-- [ ] 2E.4 Create AlertFilters component
-- [ ] 2E.5 Create alerts page
-- [ ] 2E.6 Implement real-time subscription
-- [ ] 2E.7 Create alert trigger functions
-- [ ] 2E.8 Wire up sidebar badge to real-time count
+- [x] 2E.1 Create alerts API routes
+- [x] 2E.2 Create AlertList component
+- [x] 2E.3 Create AlertItem with severity styling
+- [x] 2E.4 Create AlertFilters component
+- [x] 2E.5 Create alerts page
+- [x] 2E.6 Implement real-time subscription
+- [x] 2E.7 Create alert trigger functions
+- [x] 2E.8 Wire up sidebar badge to real-time count
 
 ## Acceptance Criteria
 - Alert inbox displays all alerts
@@ -588,9 +588,9 @@ Report back with:
 
 After all sub-agents complete:
 
-- [ ] Admin dashboard fully functional
-- [ ] Can create and manage clients end-to-end
-- [ ] Can deploy tool versions with canary rollout
-- [ ] Analytics show meaningful data (or placeholders)
-- [ ] Alerts system receives and displays notifications
-- [ ] Update home dashboard metrics to use real data
+- [x] Admin dashboard fully functional
+- [x] Can create and manage clients end-to-end
+- [x] Can deploy tool versions with canary rollout
+- [x] Analytics show meaningful data (or placeholders)
+- [x] Alerts system receives and displays notifications
+- [x] Update home dashboard metrics to use real data

@@ -1,15 +1,15 @@
 # Tasks: Enhance ROI Projector
 
-- [ ] **Visual Polish Round**
-    - [ ] Update `ROIControls` to use distinct "step" animations for slider changes.
-    - [ ] Add `framer-motion` layout transitions to `ROIVisualization`.
-    - [ ] Implement "glowing border" effect on the Net Gain card that intensifies with higher values.
-- [ ] **Advanced PDF Report**
-    - [ ] Update `ROIReport` layout to be multi-page.
-    - [ ] Implement `CoverPage` component for the PDF.
-    - [ ] Add dynamic string generation for the Executive Summary.
-- [ ] **Mobile Optimization**
-    - [ ] Refactor `ROIProjectorPage` grid to be strictly single-column on `<md` screens with larger touch targets.
-- [ ] **Validation**
-    - [ ] Verify animations are 60fps.
-    - [ ] Print test PDF to ensure page breaks are clean.
+- [x] **Visual Polish Round**
+    - [x] Update `ROIControls` to use distinct "step" animations for slider changes.
+    - [x] Add `framer-motion` layout transitions to `ROIVisualization`.
+    - [x] Implement "glowing border" effect on the Net Gain card that intensifies with higher values.
+- [x] **Advanced PDF Report**
+    - [x] Update `ROIReport` layout to be multi-page.
+    - [x] Implement `CoverPage` component for the PDF.
+    - [x] Add dynamic string generation for the Executive Summary.
+- [x] **Mobile Optimization**
+    - [x] Refactor `ROIProjectorPage` grid to be strictly single-column on `<md` screens with larger touch targets.
+- [x] **Validation**
+    - [x] Verify animations are 60fps.
+    - [x] Print test PDF to ensure page breaks are clean.
