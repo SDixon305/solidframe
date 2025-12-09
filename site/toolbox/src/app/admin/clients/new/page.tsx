@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { ClientForm } from '@/components/admin/ClientForm'
-import type { CreateTenantRequest } from '@/types/tenants'
+import type { CreateTenantRequest, UpdateTenantRequest } from '@/types/tenants'
 import { createClient } from '@/utils/supabase/client'
 
 export default function NewClientPage() {
@@ -13,7 +13,7 @@ export default function NewClientPage() {
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
-    const handleSubmit = async (data: CreateTenantRequest) => {
+    const handleSubmit = async (data: CreateTenantRequest | UpdateTenantRequest) => {
         setIsLoading(true)
         setError(null)
 
