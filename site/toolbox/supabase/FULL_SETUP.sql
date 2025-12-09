@@ -261,7 +261,7 @@ CREATE TABLE IF NOT EXISTS alerts (
     title TEXT NOT NULL,
     message TEXT,
     action_url TEXT,
-    read BOOLEAN NOT NULL DEFAULT false,
+    is_read BOOLEAN NOT NULL DEFAULT false,
     dismissed BOOLEAN NOT NULL DEFAULT false,
     created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
     read_at TIMESTAMPTZ,
@@ -269,8 +269,8 @@ CREATE TABLE IF NOT EXISTS alerts (
 );
 CREATE INDEX IF NOT EXISTS idx_alerts_tenant_id ON alerts(tenant_id);
 CREATE INDEX IF NOT EXISTS idx_alerts_type ON alerts(type);
-CREATE INDEX IF NOT EXISTS idx_alerts_read ON alerts(read);
-CREATE INDEX IF NOT EXISTS idx_alerts_tenant_unread ON alerts(tenant_id, read) WHERE read = false;
+CREATE INDEX IF NOT EXISTS idx_alerts_is_read ON alerts(is_read);
+CREATE INDEX IF NOT EXISTS idx_alerts_tenant_unread ON alerts(tenant_id, is_read) WHERE is_read = false;
 CREATE INDEX IF NOT EXISTS idx_alerts_created_at ON alerts(created_at DESC);
 ALTER TABLE alerts ENABLE ROW LEVEL SECURITY;
 DROP POLICY IF EXISTS "Allow authenticated read" ON alerts;

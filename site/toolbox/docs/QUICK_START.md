@@ -75,9 +75,9 @@ npm run dev
 ```
 
 Open:
-- **Admin Portal**: http://localhost:3000/admin
-- **Client Demo**: http://localhost:3000/client-demo
-- **Acme HVAC Portal**: http://localhost:3000/acme-hvac
+- **Admin Portal**: http://localhost:4200/admin
+- **Client Demo**: http://localhost:4200/client-demo
+- **Acme HVAC Portal**: http://localhost:4200/acme-hvac
 
 ---
 

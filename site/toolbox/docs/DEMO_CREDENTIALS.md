@@ -5,7 +5,7 @@
 | Field | Value |
 |-------|-------|
 | **Company** | Acme HVAC Services |
-| **Portal URL** | `https://acme-hvac.toolbox.solidframe.ai` or `http://localhost:3000/acme-hvac` |
+| **Portal URL** | `https://acme-hvac.toolbox.solidframe.ai` or `http://localhost:4200/acme-hvac` |
 | **Email** | john@acmehvac.com |
 | **Password** | Set via Supabase Auth (magic link or password reset) |
 | **Role** | admin (tenant admin) |
@@ -26,7 +26,7 @@
 
 | Field | Value |
 |-------|-------|
-| **URL** | `https://toolbox.solidframe.ai` or `http://localhost:3000/admin` |
+| **URL** | `https://toolbox.solidframe.ai` or `http://localhost:4200/admin` |
 | **Required Role** | `super_admin` |
 
 To create an admin account:
@@ -65,7 +65,7 @@ VALUES (
 ## Quick Login Test
 
 1. Run `npm run dev`
-2. Go to `http://localhost:3000/login`
+2. Go to `http://localhost:4200/login`
 3. Use magic link with `john@acmehvac.com`
 4. Check Supabase logs or email for the link
 5. You'll land on the Acme HVAC client portal
