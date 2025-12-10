@@ -2,6 +2,6 @@
   "rewrites": [
     { "source": "/", "destination": "/home/index.html" },
     { "source": "/hvac", "destination": "/hvac/index.html" },
-    { "source": "/hvac-owners", "destination": "/hvac/index.html" }
+    { "source": "/hvac-owners", "destination": "/hvac-owners/index.html" }
   ]
 }

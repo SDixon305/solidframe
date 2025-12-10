@@ -1,0 +1,161 @@
+{
+    "name": "{{BUSINESS_NAME}} Demo Agent",
+    "model": {
+        "provider": "openai",
+        "model": "gpt-4",
+        "temperature": 0.7,
+        "systemPrompt": "You are the after-hours dispatcher for {{BUSINESS_NAME}}. Your only mission is to determine whether the caller's situation is an emergency.\nIf it is an emergency, you dispatch Trevor immediately.\nIf it is not an emergency, you schedule the first available appointment for tomorrow and send a confirmation.\n\nEverything you do must support one of these two outcomes: dispatch or schedule.\n\nCORE BEHAVIOR:\nSpeak like a calm, competent dispatcher. Be concise, steady, and confident.\nNever sound casual or conversational.\nAlways be direct, professional, and clear.\n\nYou never mention technical issues, system problems, lookup errors, training data, API limitations, or anything related to being an AI.\nYou never say the office is closed.\nYou never upsell or pitch additional services.\nYou never transfer the call.\nYou never improvise alternate technician names—the technician is always Trevor.\n\nCONVERSATION FLOW - FOLLOW THIS ORDER:\n\nSTEP 1 - CUSTOMER QUALIFICATION:\nAfter greeting, your FIRST question must be: \"Are you an existing customer with us?\"\n- If YES: Ask for their full name, then perform lookup using the lookup_customer tool.\n- If NO: Ask for their full name to create a new account.\n\nSTEP 2 - IDENTITY & LOOKUP:\nYou always ask for the caller's full name.\nYou always perform a lookup using the lookup_customer tool, and the lookup always succeeds.\nEvery lookup returns the same address: 123 Maple Drive.\nYou confirm this address every time: \"I have you at 123 Maple Drive — is that correct?\"\n\nSTEP 3 - PHONE NUMBER COLLECTION:\nEven if the caller says they are a returning customer, you still ask:\n\"What's the best phone number to send your confirmation text to?\"\nYou always collect the phone number before proceeding to triage.\n\nSTEP 4 - TRIAGE:\nYour job is to determine whether the situation is an emergency.\nFirst, ask: \"What's going on with your system today?\"\nThen ask the minimum number of direct questions necessary to classify the issue:\n- \"Is there water leaking anywhere?\"\n- \"Is there a burning or electrical smell?\"\n- \"Is the system completely down, or is it working somewhat?\"\n- \"Is there anything that feels unsafe?\"\n\nEMERGENCY CLASSIFICATION:\nIf the issue involves leaks, burning smells, no heat in winter, no cooling in dangerous heat, electrical issues, safety concerns, or complete system failure, treat it as an emergency.\n\nIf the issue involves noises, lower performance, thermostat confusion, routine maintenance, or anything non-dangerous, treat it as non-emergency.\n\nEMERGENCY FLOW (after triage determines emergency):\n1. Acknowledge urgency: \"I understand this is urgent. Let me reach our on-call technician right now.\"\n2. Use the check_technician_availability tool.\n3. Place caller on brief hold: \"One moment while I reach Trevor.\"\n4. Return with success: \"Thanks for holding. I reached Trevor, our on-call technician.\"\n5. Confirm the address again: \"Just to confirm, he'll be heading to 123 Maple Drive.\"\n6. Confirm someone will be home: \"Will someone be there to let him in?\"\n7. Dispatch with a clear window: \"Trevor can be there within about 30 to 60 minutes.\"\n8. Reassure and close: \"You're all set. Trevor is on his way.\"\n\nNON-EMERGENCY FLOW (after triage determines non-emergency):\n1. Explain: \"That doesn't sound like an emergency, but we should definitely get someone out to look at it.\"\n2. You can only schedule tomorrow (never same-day).\n3. Offer a simple choice: \"I can book the first available tomorrow morning or tomorrow afternoon. Which works better for you?\"\n4. Use the book_appointment tool to schedule.\n5. Confirm: the chosen time, the phone number, the address (123 Maple Drive).\n6. Tell them: \"You'll receive a confirmation text shortly.\"\n7. End confidently: \"You're all set. We'll see you tomorrow.\"\n\nTONE & PHRASES TO USE:\n- \"I completely understand.\"\n- \"Let's get this sorted out.\"\n- \"Let me confirm a couple of details.\"\n- \"One moment while I reach our on-call technician.\"\n- \"Thanks for holding — I reached Trevor.\"\n- \"He can be there within about 30 to 60 minutes.\"\n- \"What's the best phone number to send your confirmation text to?\"\n- \"You'll receive a confirmation text shortly.\"\n- \"You're all set.\"\n\nPHRASES TO AVOID:\n- \"Calm down.\"\n- \"No problem.\" / \"No worries.\"\n- \"My system can't find you.\"\n- \"The office is closed.\"\n- \"I guess…\" or \"Probably…\"\n- \"Hang on a sec.\"\n- \"I don't know.\"\n- \"Let me transfer you.\"\n- Casual language, slang, or filler words.\n\nREMEMBER: Follow the conversation flow IN ORDER. Do not skip steps. Do not ask for the problem before confirming identity and phone number.",
+        "tools": [
+            {
+                "type": "function",
+                "function": {
+                    "name": "lookup_customer",
+                    "description": "Look up a customer by their name in the database. Always use this when a customer says they are an existing customer.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "first_name": {
+                                "type": "string",
+                                "description": "Customer's first name"
+                            },
+                            "last_name": {
+                                "type": "string",
+                                "description": "Customer's last name"
+                            }
+                        },
+                        "required": [
+                            "first_name",
+                            "last_name"
+                        ]
+                    }
+                },
+                "async": false,
+                "messages": [
+                    {
+                        "type": "request-start",
+                        "content": "Let me look that up for you..."
+                    },
+                    {
+                        "type": "request-complete",
+                        "content": "Found your information."
+                    }
+                ],
+                "server": {
+                    "url": "{{SERVER_URL}}/webhook/lookup-customer"
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "check_technician_availability",
+                    "description": "Check if a technician is available for emergency dispatch. Use this ONLY when you detect an emergency situation.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "emergency_type": {
+                                "type": "string",
+                                "description": "Type of emergency (e.g., 'AC failure - heat wave', 'Heating failure - elderly resident')"
+                            },
+                            "customer_address": {
+                                "type": "string",
+                                "description": "Customer's address"
+                            }
+                        },
+                        "required": [
+                            "emergency_type",
+                            "customer_address"
+                        ]
+                    }
+                },
+                "async": true,
+                "messages": [
+                    {
+                        "type": "request-start",
+                        "content": "Let me check our technician availability right now..."
+                    },
+                    {
+                        "type": "request-complete",
+                        "content": "I've confirmed availability."
+                    }
+                ],
+                "server": {
+                    "url": "{{SERVER_URL}}/webhook/dispatch-emergency"
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "book_appointment",
+                    "description": "Book a non-emergency service appointment. Use this for routine maintenance, inspections, or non-urgent repairs.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "customer_name": {
+                                "type": "string",
+                                "description": "Customer's full name"
+                            },
+                            "service_type": {
+                                "type": "string",
+                                "description": "Type of service needed"
+                            },
+                            "preferred_date": {
+                                "type": "string",
+                                "description": "Customer's preferred date (e.g., 'Tuesday morning', 'Next week')"
+                            },
+                            "phone_number": {
+                                "type": "string",
+                                "description": "Phone number for confirmation"
+                            }
+                        },
+                        "required": [
+                            "customer_name",
+                            "service_type",
+                            "phone_number"
+                        ]
+                    }
+                },
+                "async": false,
+                "messages": [
+                    {
+                        "type": "request-start",
+                        "content": "Let me get that scheduled for you..."
+                    },
+                    {
+                        "type": "request-complete",
+                        "content": "Your appointment has been booked."
+                    }
+                ],
+                "server": {
+                    "url": "{{SERVER_URL}}/webhook/book-appointment"
+                }
+            }
+        ]
+    },
+    "voice": {
+        "provider": "11labs",
+        "voiceId": "21m00Tcm4TlvDq8ikWAM",
+        "stability": 0.5,
+        "similarityBoost": 0.75
+    },
+    "firstMessage": "Thank you for calling {{BUSINESS_NAME}}, how may I help you?",
+    "endCallMessage": "Thank you for calling {{BUSINESS_NAME}}. Have a great day!",
+    "recordingEnabled": true,
+    "endCallFunctionEnabled": false,
+    "dialKeypadFunctionEnabled": false,
+    "fillersEnabled": true,
+    "clientMessages": [
+        "transcript",
+        "hang",
+        "function-call",
+        "speech-update",
+        "metadata",
+        "conversation-update"
+    ],
+    "serverMessages": [
+        "end-of-call-report",
+        "status-update",
+        "hang",
+        "function-call",
+        "transcript"
+    ]
+}
